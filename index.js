@@ -1,0 +1,1 @@
+module.exports = {view: require('./lib/views/audio'), model: require('./lib/models/audio')};
