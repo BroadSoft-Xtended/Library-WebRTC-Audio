@@ -3,7 +3,9 @@
 Handles audio streams.
 
 Model : bdsft_webrtc.default.audio
+
 View : bdsft_webrtc.default.audioview
+
 Dependencies : [SIP Stack](https://github.com/BroadSoft-Xtended/Library-WebRTC-SIPStack), [Sound](https://github.com/BroadSoft-Xtended/Library-WebRTC-Sound)
 
 ## Elements
