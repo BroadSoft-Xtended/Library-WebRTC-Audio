@@ -1,13 +1,14 @@
 .bdsft-webrtc
-  .enableMute:not(.muted).started .mute,
-  .enableMute.muted.started .unmute
-    {fadeIn}
+  .cell-muteAudio
+    &.enableMute:not(.muted).started .mute,
+    &.enableMute.muted.started .unmute
+      {fadeIn}
 
-  .enableMute:not(.started) .mute, 
-  .enableMute:not(.started) .unmute,
-  .enableMute.muted.started .mute, 
-  .enableMute:not(.muted).started .unmute
-    {fadeOut}  
+    &.enableMute:not(.started) .mute, 
+    &.enableMute:not(.started) .unmute,
+    &.enableMute.muted.started .mute, 
+    &.enableMute:not(.muted).started .unmute
+      {fadeOut}  
 
-  :not(.enableMute).cell-muteAudio
-    display none !important
+    &:not(.enableMute)
+      display none !important
