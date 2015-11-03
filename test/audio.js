@@ -1,23 +1,28 @@
-test = require('../node_modules/webrtc-sipstack/test/includes/common')(require('../node_modules/webrtc-core/test/includes/common'));
+test = require('../node_modules/webrtc-sipstack/test/includes/common')(require('../node_modules/bdsft-sdk-test/lib/common'));
 describe('audio', function() {
 
   beforeEach(function() {
-    test.createModelAndView('sipstack', {
-        sipstack: require('webrtc-sipstack')
-    });
     test.createModelAndView('audio', {
-        audio: require('../'),
-        sipstack: require('webrtc-sipstack'),
-        sound: require('webrtc-sound')
+      audio: require('../'),
+      sipstack: require('webrtc-sipstack'),
+      sound: require('webrtc-sound'),
+      eventbus: require('bdsft-sdk-eventbus'),
+      debug: require('bdsft-sdk-debug'),
+      core: require('webrtc-core')
     });
+    sipstack = bdsft_client_instances.test.sipstack.sipstack;
   });
 
   it('mute', function() {
-    var audioTrack1 = {enabled: true};
-    sipstack.getLocalStreams = function(){
-      return [{getAudioTracks: function(){
-        return [audioTrack1];
-      }}]
+    var audioTrack1 = {
+      enabled: true
+    };
+    sipstack.getLocalStreams = function() {
+      return [{
+        getAudioTracks: function() {
+          return [audioTrack1];
+        }
+      }]
     };
     audio.mute();
     expect(sipstack.getLocalStreams()[0].getAudioTracks()[0].enabled).toEqual(false);
@@ -78,7 +83,7 @@ describe('audio', function() {
     test.isVisible(audioview.unmute, false);
 
     audioview.mute.trigger('click');
-    expect(audio.classes).toEqual(["muted","enableMute","started"]);
+    expect(audio.classes).toEqual(["muted", "enableMute", "started"]);
     test.isVisible(audioview.mute, false);
     test.isVisible(audioview.unmute, true);
 
